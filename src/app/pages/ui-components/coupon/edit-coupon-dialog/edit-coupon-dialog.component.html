@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Update Coupon Status</h2>
+<mat-dialog-content>
+  <div class="status-options">
+    <mat-checkbox
+      [(ngModel)]="statuses.used"
+      (change)="onStatusChange($event, 'used')">
+      Used
+    </mat-checkbox>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button color="primary" (click)="onSave()">Save</button>
+</mat-dialog-actions>

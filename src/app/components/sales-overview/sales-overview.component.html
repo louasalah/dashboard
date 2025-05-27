@@ -1,0 +1,112 @@
+<mat-card style="
+  background-color: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  padding: 2.5rem 3rem;
+  max-width: 900px;
+  margin: 2rem auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  user-select: none;
+  cursor: default;
+  min-height: 480px; /* Plus de hauteur */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+">
+  <mat-card-content style="flex-grow: 1;">
+    <div class="d-flex w-100" style="margin-bottom: 1.8rem; align-items: center;">
+      <mat-card-title style="
+        font-weight: 700; 
+        color: #FF7900; 
+        font-size: 1.8rem; 
+        letter-spacing: 1.5px; 
+        text-transform: uppercase; 
+        margin: 0; 
+        padding: 0.2rem 0; 
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.15); 
+        transition: color 0.3s ease;
+        cursor: default;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      "
+      onmouseover="this.style.color='#e55a00'" 
+      onmouseout="this.style.color='#ff6600'">
+        Aperçu des coupons
+      </mat-card-title>
+    </div>
+
+    <div *ngIf="isLoading" class="d-flex justify-content-center" style="margin-top: 2rem;">
+      <mat-progress-spinner diameter="50" mode="indeterminate" color="warn"></mat-progress-spinner>
+    </div>
+
+    <div *ngIf="error" class="error-message" style="
+      color: #d32f2f; 
+      font-weight: 600; 
+      text-align: center; 
+      margin-top: 2rem;
+      font-size: 1.1rem;
+    ">
+      <p>Erreur lors du chargement des données des coupons</p>
+    </div>
+
+    <div *ngIf="!isLoading && !error" style="margin-top: 2.5rem;">
+      <div class="d-flex justify-content-between mb-4" style="gap: 1.5rem;">
+        <div style="
+          background: #FFF4E5; 
+          padding: 1.4rem 2rem; 
+          border-radius: 10px; 
+          box-shadow: 0 3px 10px rgba(255, 121, 0, 0.2);
+          flex: 1;
+          text-align: center;
+          user-select: text;
+        ">
+          <span style="font-size: 1.2rem; color: #666;">Total des Produits</span>
+          <h3 style="margin: 0; font-size: 2.4rem; color: #000000; font-weight: 700;">
+            {{ stats?.totalProducts || 0 }}
+          </h3>
+        </div>
+        <div style="
+          background: #FFF4E5; 
+          padding: 1.4rem 2rem; 
+          border-radius: 10px; 
+          box-shadow: 0 3px 10px rgba(255, 121, 0, 0.2);
+          flex: 1;
+          text-align: center;
+          user-select: text;
+        ">
+          <span style="font-size: 1.2rem; color: #666;">Total des coupons</span>
+          <h3 style="margin: 0; font-size: 2.4rem; color: #000000; font-weight: 700;">
+            {{ stats?.totalCouponsSent || 0 }}
+          </h3>
+        </div>
+        <div style="
+          background: #FFF4E5; 
+          padding: 1.4rem 2rem; 
+          border-radius: 10px; 
+          box-shadow: 0 3px 10px rgba(255, 121, 0, 0.2);
+          flex: 1;
+          text-align: center;
+          user-select: text;
+        ">
+          <span style="font-size: 1.2rem; color: #666;">Coupons utilisés</span>
+          <h3 style="margin: 0; font-size: 2.4rem; color: #000000; font-weight: 700;">
+            {{ stats?.totalCouponsUsed || 0 }}
+          </h3>
+        </div>
+      </div>
+
+      <apx-chart 
+        [series]="salesOverviewChart.series" 
+        [dataLabels]="salesOverviewChart.dataLabels"
+        [chart]="salesOverviewChart.chart" 
+        [legend]="salesOverviewChart.legend" 
+        [xaxis]="salesOverviewChart.xaxis"
+        [yaxis]="salesOverviewChart.yaxis" 
+        [grid]="salesOverviewChart.grid" 
+        [stroke]="salesOverviewChart.stroke"
+        [tooltip]="salesOverviewChart.tooltip" 
+        [plotOptions]="salesOverviewChart.plotOptions"
+        style="height: 320px;">
+      </apx-chart>
+    </div>
+  </mat-card-content>
+</mat-card>

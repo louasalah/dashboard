@@ -1,0 +1,267 @@
+<div class="blank-layout-container justify-content-center align-items-center bg-light">
+  <div class="position-relative row w-100 h-100 bg-gredient justify-content-center">
+    <div class="col-lg-4 d-flex align-items-center">
+      <mat-card class="cardWithShadow boxed-auth">
+        <mat-card-content class="p-32">
+          <!--<div class="text-center">
+            <a [routerLink]="['/dashboard']">
+              <img src="./assets/images/logos/OrangeLogo.png" class="align-middle m-2" alt="logo" />
+            </a>
+          </div> 
+          <div class="row m-t-24 custom-row">
+            <div class="col-12 col-sm-6">
+              <button mat-stroked-button class="w-100">
+                <div class="d-flex align-items-center">
+                  <img src="/assets/images/svgs/google-icon.svg" alt="google" width="16" class="m-r-8" />
+                  <span>
+                    Sign in with Google
+                  </span>
+                </div>
+              </button>
+            </div>
+            <div class="col-12 col-sm-6">
+              <button mat-stroked-button class="w-100 d-flex align-items-center">
+                <div class="d-flex align-items-center">
+                  <img src="/assets/images/svgs/facebook-icon.svg" alt="facebook" width="40" class="m-r-4" />
+                  Sign in with FB
+                </div>
+              </button>
+            </div>
+          </div>  -->
+
+          <div class="or-border m-t-30"> Se connecter avec</div>
+
+          <form class="m-t-30" #loginForm="ngForm">
+            <mat-label class="f-s-14 f-w-600 m-b-12 d-block">Email</mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput [(ngModel)]="loginData.email" name="email" required />
+            </mat-form-field>
+
+            <mat-label class="f-s-14 f-w-600 m-b-12 d-block">Password</mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput type="password" [(ngModel)]="loginData.password" name="password" required />
+            </mat-form-field>
+
+            <!--<div class="d-flex align-items-center m-b-12">
+              <mat-checkbox color="primary">Remember this Device</mat-checkbox>
+              <a class="text-primary f-w-600 text-decoration-none m-l-auto f-s-14">Forgot Password?</a>
+            </div>  -->
+            <div *ngIf="errorMessage" class="error-message">
+              {{ errorMessage }}
+            </div>
+            <button (click)="onLogin()" mat-flat-button color="primary" class="w-100" [disabled]="loginForm.invalid">
+              s'authentifier
+            </button>
+          </form>
+
+         <!---- <span class="d-block f-w-500 text-center m-t-24">New to Modernize?
+            <a [routerLink]="['/authentication/register']" class="text-decoration-none text-primary f-w-500 f-s-14">
+              Create an account</a>
+          </span>  -->
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<style>
+
+/* Container général : plein écran, centré */
+.blank-layout-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    background: linear-gradient(135deg, #FFFFFF, #FFE0B3);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+}
+
+/* Carte avec ombre, bord arrondi et dégradé léger */
+.cardWithShadow {
+  background: linear-gradient(145deg, #1f1f1f, #2c2c2c);
+  border-radius: 20px;
+  box-shadow:
+    0 4px 8px rgba(255, 102, 0, 0.3),
+    0 10px 20px rgba(255, 140, 0, 0.25);
+  width: 100%;
+  max-width: 440px;
+  padding: 50px 40px;
+  color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid transparent;
+}
+
+/* Effet au survol : léger zoom + lueur orange */
+.cardWithShadow:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 8px 16px rgba(255, 110, 0, 0.5),
+    0 20px 40px rgba(255, 140, 0, 0.4);
+  border-color: #ff6600;
+}
+
+/* Padding contenu mat-card */
+.p-32 {
+  padding: 0 !important;
+}
+
+/* Label stylisé */
+mat-label {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #ff7f00; /* Orange vif */
+  letter-spacing: 0.7px;
+  margin-bottom: 6px;
+  display: block;
+  user-select: none;
+}
+
+/* Label focus */
+mat-form-field.mat-focused mat-label {
+  color: #ffa500; /* Orange clair */
+}
+
+/* Form fields (mat-form-field) */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+/* Bordure input personnalisée */
+.mat-mdc-form-field-outline {
+  border-radius: 14px;
+  border: 2px solid #444;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus bordure input */
+.mat-mdc-form-field.mat-focused .mat-mdc-form-field-outline-thick {
+  border-color: #ff7f00 !important;
+  box-shadow: 0 0 8px 2px rgba(255, 127, 0, 0.6);
+}
+
+/* Input texte */
+input[matInput] {
+  background-color: #222;
+  color: #eee;
+  font-weight: 600;
+  border-radius: 14px;
+  padding: 14px 20px;
+  font-size: 15px;
+  border: none;
+  box-shadow: inset 0 0 5px #000;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover input */
+input[matInput]:hover {
+  background-color: #444;
+}
+
+/* Placeholder */
+input[matInput]::placeholder {
+  color: #ffffff;
+  font-style: italic;
+  opacity: 1;
+}
+
+/* Bouton Sign In stylé */
+button[mat-flat-button] {
+  width: 100%;
+  background: linear-gradient(90deg, #ff7f00, #ff6600);
+  border-radius: 18px;
+  padding: 16px 0;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  color: #fff !important;
+  box-shadow: 0 8px 20px rgba(255, 110, 0, 0.6);
+  border: none;
+  cursor: pointer;
+  transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+  user-select: none;
+}
+
+/* Bouton hover */
+button[mat-flat-button]:hover:not(:disabled) {
+  background: linear-gradient(90deg, #ff9500, #ff7f00);
+  box-shadow: 0 12px 28px rgba(255, 140, 0, 0.9);
+  transform: translateY(-3px);
+}
+
+/* Bouton active */
+button[mat-flat-button]:active {
+  transform: translateY(1px);
+  box-shadow: 0 6px 18px rgba(255, 110, 0, 0.7);
+}
+
+/* Texte "Se connecter avec" */
+.or-border {
+  position: relative;
+  text-align: center;
+  color: #ff7f00;
+  font-weight: 700;
+  margin: 40px 0 28px;
+  letter-spacing: 0.8px;
+  font-size: 14px;
+  user-select: none;
+}
+
+.or-border::before,
+.or-border::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 38%;
+  height: 2px;
+  background-color: #ff6600;
+  border-radius: 4px;
+  transform: translateY(-50%);
+}
+
+.or-border::before {
+  left: 0;
+}
+
+.or-border::after {
+  right: 0;
+}
+
+/* Message d’erreur */
+.error-message {
+  color: #ff3b00;
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 28px;
+  text-align: center;
+  letter-spacing: 0.4px;
+  user-select: none;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .cardWithShadow {
+    padding: 40px 30px;
+    max-width: 100%;
+  }
+
+  input[matInput] {
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+
+  button[mat-flat-button] {
+    font-size: 15px;
+    padding: 14px 0;
+  }
+}
+
+
+
+
+input[matInput], input.mat-mdc-input-element {
+  color: #fff !important;
+}
+
+
+</style>

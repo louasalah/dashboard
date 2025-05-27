@@ -1,0 +1,37 @@
+<!-- product.component.html -->
+<div class="product-table-container">
+  <h2 class="section-title">Produits</h2>
+  <button mat-raised-button color="primary" (click)="openCreateProductDialog()">+ Ajouter produit</button>
+
+  <app-main-table [config]="productTableConfig"></app-main-table>
+  <div *ngIf="errorMessage" class="alert alert-danger">
+  {{ errorMessage }}
+</div>
+
+</div>
+<style>
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #FF7900;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .section-title::after {
+    content: "";
+    flex: 1;
+    height: 3px;
+    background: linear-gradient(to right, #FF7900, transparent);
+    margin-left: 10px;
+  }
+
+  @keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-5px); }
+  }
+</style>

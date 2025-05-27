@@ -1,0 +1,85 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title>Link Product with Discount</h2>
+  
+  <div mat-dialog-content>
+    <div class="form-row">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Select Product</mat-label>
+        <mat-select [(ngModel)]="linkData.productId" (selectionChange)="selectProduct($event)">
+          <mat-option *ngFor="let product of products" [value]="product.idproduct">
+            {{ product.referenceProduct }} - {{ product.description }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="product-details" *ngIf="selectedProduct">
+      <h3>Selected Product Details:</h3>
+      <p><strong>Reference:</strong> {{ selectedProduct.referenceProduct }}</p>
+      <p><strong>Description:</strong> {{ selectedProduct.description }}</p>
+      <p><strong>Price:</strong> {{ selectedProduct.price | currency }}</p>
+      <p><strong>Category:</strong> {{ selectedProduct.categorie.nom }}</p>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Select Discount</mat-label>
+        <mat-select [(ngModel)]="linkData.discountId" (selectionChange)="selectDiscount($event)">
+          <mat-option *ngFor="let discount of discounts" [value]="discount.idDisc">
+            {{ discount.refDisc }} ({{ discount.type }}: {{ discount.valeur }}{{ discount.type === 'percentage' ? '%' : '' }})
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="discount-details" *ngIf="selectedDiscount">
+      <h3>Selected Discount Details:</h3>
+      <p><strong>Reference:</strong> {{ selectedDiscount.refDisc }}</p>
+      <p><strong>Type:</strong> {{ selectedDiscount.type }}</p>
+      <p><strong>Value:</strong> {{ selectedDiscount.valeur }}{{ selectedDiscount.type === 'percentage' ? '%' : '' }}</p>
+    </div>
+
+    <div class="form-row dates">
+      <mat-form-field appearance="fill">
+        <mat-label>Valid From</mat-label>
+        <input matInput [matDatepicker]="pickerFrom" [(ngModel)]="linkData.valideFrom">
+        <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFrom></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Valid To</mat-label>
+        <input matInput [matDatepicker]="pickerTo" [(ngModel)]="linkData.valideTo">
+        <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+        <mat-datepicker #pickerTo></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <!--<div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Duration (Days)</mat-label>
+        <input matInput type="number" [(ngModel)]="linkData.jour" min="1">
+      </mat-form-field> -->
+
+      <mat-form-field appearance="fill">
+        <mat-label>Priority</mat-label>
+        <mat-select [(ngModel)]="linkData.priority">
+          <mat-option value="low">Low</mat-option>
+          <mat-option value="medium">Medium</mat-option>
+          <mat-option value="high">High</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+   <!-- <div class="form-row checkbox">
+      <mat-checkbox [(ngModel)]="linkData.active">Active</mat-checkbox>
+    </div>
+  </div>-->
+
+  <div mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="!isFormValid()" (click)="onSubmit()">
+      Link Product
+    </button>
+  </div>
+</div>

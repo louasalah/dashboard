@@ -1,0 +1,29 @@
+:host {
+  display: block;
+  background: #fff; // Ensure white background
+  padding: 24px;
+  border-radius: 8px;
+  max-width: 100%;
+}
+
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-dialog-actions {
+  padding-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+
+  button {
+    min-width: 100px;
+  }
+}

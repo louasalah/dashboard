@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Ajouter une remise</h2>
+
+<div mat-dialog-content>
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Référence</mat-label>
+    <input matInput [(ngModel)]="discount.refDisc" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Type de remise</mat-label>
+    <mat-select [(ngModel)]="discount.type" (selectionChange)="onTypeChange()">
+      <mat-option *ngFor="let type of discountTypes" [value]="type">
+        {{ type }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Valeur</mat-label>
+    <input matInput type="number" [(ngModel)]="discount.valeur" required>
+    <mat-hint *ngIf="discount.type === 'Percentage'">La valeur ne doit pas dépasser 100%</mat-hint>
+  </mat-form-field>
+
+  <!-- Message d'erreur -->
+  <div *ngIf="validationError" class="error-message">
+    {{ validationError }}
+  </div>
+
+
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Annuler</button>
+  <button mat-raised-button color="primary" (click)="onSave()">Enregistrer</button>
+</div>

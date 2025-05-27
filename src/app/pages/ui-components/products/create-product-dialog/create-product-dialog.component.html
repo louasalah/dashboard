@@ -1,0 +1,50 @@
+<h1 mat-dialog-title>Ajouter un Produit</h1>
+
+<div mat-dialog-content [formGroup]="form">
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Référence</mat-label>
+    <input matInput formControlName="referenceProduct" placeholder="Ex: REF-123">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Description</mat-label>
+    <input matInput formControlName="description" placeholder="Ex: Un produit top qualité">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Prix</mat-label>
+    <input matInput type="number" formControlName="price" placeholder="Ex: 49.99">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Quantité remise</mat-label>
+    <input matInput type="number" formControlName="quantiteDiscount" placeholder="Ex: 10">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Commentaire</mat-label>
+    <textarea matInput formControlName="comment" placeholder="Commentaire optionnel..."></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>URL Image</mat-label>
+    <input matInput formControlName="image" placeholder="Ex: https://site.com/img.png">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Catégorie</mat-label>
+    <mat-select formControlName="categorie" (selectionChange)="onCategoryChange($event)">
+      <mat-option *ngFor="let c of categories" [value]="c">
+        {{ c.nom }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div *ngIf="validationError" class="error-message">
+  {{ validationError }}
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Annuler</button>
+  <button mat-raised-button color="primary" (click)="submit()">Créer</button>
+</div>

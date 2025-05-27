@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Edit Link</h2>
+<mat-dialog-content [formGroup]="editForm">
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Jours</mat-label>
+    <input matInput type="number" formControlName="jours" required>
+  </mat-form-field>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button color="primary" [disabled]="editForm.invalid" (click)="save()">OK</button>
+</mat-dialog-actions>

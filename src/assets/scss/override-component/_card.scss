@@ -1,0 +1,74 @@
+@use "@angular/material" as mat;
+@use "../variables" as *;
+
+@include mat.card-overrides(
+  (
+    elevated-container-color: rgba(255, 255, 255, 0.25), // fond semi-transparent
+    title-text-size: 1.3rem,
+    subtitle-text-size: 1rem,
+    title-text-line-height: 1.6rem,
+    title-text-weight: 700,
+    subtitle-text-weight: 400,
+    elevated-container-shape: 16px,
+    outlined-container-shape: 16px,
+    elevated-container-elevation: 2,
+  )
+);
+
+html {
+  .mat-mdc-card {
+    margin-bottom: 2rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(255, 102, 0, 0.15);
+    color: #333;
+
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 12px 32px 0 rgba(255, 102, 0, 0.5);
+      transform: translateY(-5px);
+      
+      .mat-mdc-card-title {
+        color: #ff6600;
+        text-shadow: 0 0 8px #ff6600aa;
+      }
+    }
+
+    .mat-mdc-card-header {
+      padding: 1.5rem 2rem !important;
+
+      .mat-mdc-card-title {
+        font-weight: 700;
+        font-size: 1.3rem;
+        color: #ffa64d;
+        letter-spacing: 1px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-bottom: 0.3rem;
+        transition: color 0.3s ease, text-shadow 0.3s ease;
+      }
+
+      .mat-mdc-card-subtitle {
+        font-weight: 400;
+        font-size: 1rem;
+        color: #bbb;
+        font-style: normal;
+      }
+    }
+
+    > .mat-mdc-card-content {
+      padding: 1.5rem 2rem !important;
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.5rem;
+    }
+
+    .mdc-card__actions {
+      padding: 1rem 2rem !important;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+  }
+}
